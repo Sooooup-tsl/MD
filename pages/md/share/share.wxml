@@ -1,0 +1,26 @@
+<!--pages/md/share/share.wxml-->
+<view class="main">
+    <view class="pic_top">
+        <image src="{{imgurl}}/share_bg.jpg" mode="widthFix"></image>
+    </view>
+
+    <view>
+        <view class="name">
+            <text>邀请好友</text>
+            <text>一起拼团砍价更优惠</text>
+        </view>
+        <view class="rule">
+            <view class="rule_title">
+                <text>邀请奖励规则</text>
+            </view>
+            <view class="rule_content">
+                <view>分享到微信群（最好是<text>业主群</text>）</view>
+                <view><text>5位好友</text>点击后奖励手工实木创意小木马</view>
+                <view><text>（每户奖励一个）</text></view>
+            </view>
+        </view>
+    </view>
+    <view class="share_item">
+        <button class="btn" bindtap="primary" open-type="share">立即分享</button>
+    </view>
+</view>

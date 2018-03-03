@@ -1,0 +1,51 @@
+/* pages/md/history/history.wxss */
+@import '../base.wxss';
+@import "../template/footer.wxss";
+
+.item {
+    position: relative;
+    background: #fff;
+    padding: 30rpx;
+    margin-top: 20rpx;
+}
+.item_l {
+    width: 120rpx;
+    padding-right: 20rpx;
+    flex: 0 0 auto;
+}
+.item_r {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: space-around;
+    justify-content: space-around
+}
+.item_r text{
+    display: block
+}
+.title {
+    font-size: 34rpx;
+    color: #000
+}
+
+.desc {
+    font-size: 26rpx;
+    color: #a9a9a9;
+    width: 530rpx;
+}
+.item_r::after {
+	position: absolute;
+	top: 50%;
+	right: 30rpx;
+	width: 10px;
+	height: 10px;
+	content: "";
+	margin-top: -5px;
+	border-top: 3px solid #c7c7cc;
+	border-right: 3px solid #c7c7cc;
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}

@@ -1,0 +1,108 @@
+<!--pages/md/index/index.wxml-->
+
+<view>{{brandId}}</view>
+
+<view>
+    <!-- 轮播图 -->
+    <swiper indicator-dots indicator-active-color="#fe3a2e">
+        <block wx:for="{{detailList.bannerUrls}}" wx:key="">
+            <swiper-item>
+                <image src="{{item}}" class="slide-image" mode="widthFix" data-img="{{item}}" />
+            </swiper-item>
+        </block>
+    </swiper>
+
+    <view>
+        <view class="item flex_box border_bottom05">
+            <view class="item_l">
+                <image src="{{detailList.logoUrl}}" mode="widthFix"></image>
+            </view>
+            <view class="item_c">
+                <text class="title">{{detailList.title}}</text>
+                <text class="desc nowrap">{{detailList.desc}}</text>
+            </view>
+            <navigator url="/pages/md/introduce/introduce?brandId={{detailList.brandId}}" class="item_r">
+                <view class="ppjs">品牌介绍</view>
+            </navigator>
+        </view>
+
+        <block wx:for="{{detailList.addressList}}" wx:key="phonenumber" wx:if="{{ index< limitNum }}">
+            <view class="item2 flex_box border_bottom05">
+                <view class="item2_l">
+                    <image src="{{imgurl}}/location.png" mode="widthFix"></image>
+                </view>
+                <view class="item2_c nowrap2">
+                    <text class="desc">{{item.address}}</text>
+                </view>
+                <view class="item2_r border_left05" data-teleph="{{item.phonenumber}}" bindtap="callTel">
+                    <image src="{{imgurl}}/tel.png" mode="widthFix"></image>
+                </view>
+            </view>
+        </block>
+
+        <view class="item3" bindtap='loadMore'>
+            <view wx:if="{{!showMore}}">查看其他{{detailList.addressLength - 1}}家门店
+                <label class="seemore"></label>
+            </view>
+            <view wx:else>收起
+                <label class="fold"></label>
+            </view>
+        </view>
+    </view>
+
+
+    <view class="tab_list">
+        <!-- tab -->
+        <view class="tab_title flex_box flex_align_center border_bottom05">
+            <block wx:for="{{detailList.tabList.tabNameArr}}" wx:key="">
+                <view class="{{currentTab == index ? 'checked' : ''}} tab_item flex_1" data-index="{{index}}" bindtap="changeTab">
+                    <text>{{item}}</text>
+                </view>
+            </block>
+        </view>
+        <!-- 产品 -->
+        <view class="tab_content_list" style="background: #f4f4f4" wx:if="{{currentTab == 0}}">
+            <!-- <import src="../template/product.wxml" />
+            <template is="product_page" data="{{...images}}"></template> -->
+            <view class="tab_content_item tab_product_item">
+                <view style="display:none">
+                    <image wx:for="{{images}}" wx:key="id" id="{{item.id}}" src="{{item.pic}}" bindload="onImageLoad"></image>
+                </view>
+                <scroll-view scroll-y="true" bindscrolltolower="loadImages">
+                    <view style="width:100%">
+                        <view class="img_col">
+                            <view wx:for="{{col1}}" wx:key="id" class="img_item">
+                                <image src="{{item.pic}}" style="width:100%;height:{{item.height}}px"></image>
+                                <text class="text_item">{{item.title}}</text>
+                            </view>
+                        </view>
+                        <view class="img_col">
+                            <view wx:for="{{col2}}" wx:key="id" class="img_item">
+                                <image src="{{item.pic}}" style="width:100%;height:{{item.height}}px"></image>
+                                <text class="text_item">{{item.title}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+        <!-- 门店 -->
+        <view class="tab_content_list" wx:elif="{{currentTab == 1}}">
+            <import src="../template/store.wxml" />
+            <template is="store_page" data="{{...detailList.tabList.storeList}}"></template>
+        </view>
+        <!-- 案例 -->
+        <view class="tab_content_list" wx:elif="{{currentTab == 2}}">
+            <import src="../template/case.wxml" />
+            <template is="case_page" data="{{...detailList.tabList.caseList}}"></template>
+        </view>
+        <!-- 视频 -->
+        <view class="tab_content_list" wx:elif="{{currentTab == 3}}">
+            <import src="../template/video.wxml" />
+            <template is="video_page" data="{{...detailList.tabList.videoList}}"></template>
+        </view>
+    </view>
+</view>
+
+<import src="../template/footer.wxml" />
+<template is="footer_page" data="{{imgurl}}"></template>

@@ -1,0 +1,25 @@
+
+.footer_img {
+    width: 100%;
+    padding: 40rpx 20rpx 0 20rpx;
+    box-sizing: border-box;
+}
+
+.mdmj_logo {
+    width: 210rpx;
+    margin: 46rpx auto;
+}
+
+.icon_history {
+    position: fixed;
+    bottom: 114rpx;
+    width: 104rpx;
+    right: 0;
+}
+
+.icon_top {
+    position: fixed;
+    bottom: 0;
+    width: 104rpx;
+    right: 0;
+}

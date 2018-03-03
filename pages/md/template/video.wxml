@@ -1,0 +1,9 @@
+<!-- 视频 -->
+<template name="video_page">
+    <block wx:for="{{videoArr}}" wx:key="">
+        <view class="tab_content_item tab_video_item border_bottom05" >
+            <video class="myVideo" src="{{item.videourl}}" controls></video>
+            <text class="desc">{{item.desc}}</text>
+        </view>
+    </block>
+</template>

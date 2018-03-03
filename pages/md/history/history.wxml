@@ -1,0 +1,15 @@
+<!--pages/md/history/history.wxml-->
+<view>
+    <navigator url="/pages/md/index/index?brandId={{item.brandId}}" class="item flex_box" wx:for="{{historyList}}" wx:key="" data-url="" bindtap="jump">
+        <view class="item_l">
+            <image src="{{item.logoUrl}}" mode="widthFix"></image>
+        </view>
+        <view class="item_r">
+            <text class="title">{{item.title}}</text>
+            <text class="desc nowrap">{{item.desc}}</text>
+        </view>
+    </navigator>
+</view>
+
+<import src="../template/footer.wxml"/>
+<template is="footer_page" data="{{imgurl}}"></template>

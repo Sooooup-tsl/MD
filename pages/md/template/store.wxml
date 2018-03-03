@@ -1,0 +1,10 @@
+<!-- 门店 -->
+<template name="store_page">
+    <block wx:for="{{storeArr}}" wx:key="">
+        <view class="tab_content_item">
+            <image src="{{item.imgurl}}" mode="widthFix"></image>
+            <text class="title">{{item.title}}</text>
+            <text class="desc">{{item.desc}}</text>
+        </view>
+    </block>
+</template>

@@ -1,0 +1,58 @@
+/* pages/md/share/share.wxss */
+@import '../base.wxss';
+
+.pic_top {
+    width: 583rpx;
+    padding-top: 80rpx;
+    margin: 0 auto
+}
+.name {
+    font-size: 44rpx;
+    color: #333;
+    text-align: center;
+}
+
+.name text {
+    display: block;
+    line-height: 1.5;
+}
+
+.rule {
+    text-align: center;
+    padding-top: 80rpx;
+}
+
+.rule_title {
+    position: relative;
+    font-size: 30rpx;
+    color: #333;
+    padding-bottom: 30rpx;
+}
+.rule_title::before{
+    content: '';
+    position: absolute;
+    width: 30rpx;
+    height: 10rpx;
+    
+}
+
+.rule_content {
+    font-size: 26rpx;
+    color: #666;
+}
+
+.rule_content view {
+    line-height: 2;
+}
+
+.rule_content view text {
+    color: #fe3a2e;
+}
+.share_item {
+    padding: 100rpx 30rpx;
+}
+.btn{
+    color: #fff;
+    background:#fe3a2e; 
+    font-size: 36rpx;
+}

@@ -1,0 +1,40 @@
+/* pages/md/introduce/introduce.wxss */
+@import '../base.wxss';
+@import "../template/footer.wxss";
+
+.pic_top {
+    width: 100%;
+}
+
+.intro_name {
+    padding: 40rpx 0;
+}
+
+.title {
+    font-size: 34rpx;
+    color: #333;
+    display: block;
+    margin-bottom: 20rpx;
+}
+
+.desc {
+    font-size: 26rpx;
+    color: #999;
+    display: block;
+}
+
+.content {
+    padding: 30rpx 40rpx;
+    color: #a9a9a9;
+    font-size: 28rpx;
+}
+
+.content_pic {
+    padding: 50rpx 0;
+}
+
+.content_word {
+    text-indent: 56rpx;
+    display: block;
+    line-height: 1.5;
+}

@@ -1,0 +1,17 @@
+<!-- 案例 -->
+<wxs module="util" src="../filter/util.wxs"></wxs>
+
+<template name="case_page">
+    <block wx:for="{{caseArr}}" wx:key="">
+        <view class="tab_content_item tab_case_item">
+            <text class="title">{{item.title}}</text>
+            <text class="desc">{{item.desc}}</text>
+            <view class="img_arr flex_box ">
+                <block wx:for="{{item.imgurls}}" wx:for-item="imgItem" wx:key="">
+                    <image src="{{imgItem}}" mode="scaleToFill" class="img-s" data-url="{{imgItem}}" data-imgs="{{item.imgurls}}" bindtap='previewImg'></image>
+                </block>
+            </view>
+            <text class="time">{{util.getTime(item.time)}}</text>
+        </view>
+    </block>
+</template>

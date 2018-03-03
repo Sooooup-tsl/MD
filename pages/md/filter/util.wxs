@@ -1,0 +1,26 @@
+var getTime = function(time) {
+    var str = '';
+
+    var leftTime = getDate() - time;
+    var days = parseInt(leftTime / 1000 / 60 / 60 / 24, 10); 
+    var hours = parseInt(leftTime / 1000 / 60 / 60 % 24, 10);
+    var minutes = parseInt(leftTime / 1000 / 60 % 60, 10);
+    var seconds = parseInt(leftTime / 1000 % 60, 10);
+    
+    if (days) {
+        str = days + "天";
+    } else if (hours) {
+        str = hours + "小时"
+    } else if (minutes) {
+        str = minutes + "分"
+    } else {
+        str = seconds + "秒"
+    }
+    
+    return str + "前";
+}
+
+
+module.exports = {
+    getTime: getTime
+};
