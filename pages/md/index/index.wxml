@@ -50,6 +50,12 @@
         </view>
     </view>
 
+    <!-- 团购优惠 -->
+
+    <view>
+        <import src="../template/active.wxml" />
+        <template is="active_page" data="{{...detailList.activeList}}"></template>
+    </view>
 
     <view class="tab_list">
         <!-- tab -->

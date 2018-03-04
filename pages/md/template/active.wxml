@@ -1,0 +1,52 @@
+<!-- 团购优惠 -->
+<template name="active_page">
+    <view class="group_item">
+        <view class="g_item_h border_bottom05">
+            <text class="g_word">团购优惠</text>
+            <view class="g_countdown">
+                <text>{{countDownDay}}</text>天
+                <text>{{countDownHour}}</text>时
+                <text>{{countDownMinute}}</text>分
+                <text>{{countDownSecond}}</text>秒
+            </view>
+        </view>
+        <view class="g_item_content ">
+            <view class="g_item flex_box border_bottom05">
+                <view class="g_item_l">
+                    <image src="{{logoUrl}}" mode="widthFix"></image>
+                </view>
+                <view class="g_item_c">
+                    <text class="title">{{title}}</text>
+                    <text class="desc nowrap2">{{desc}}</text>
+                </view>
+                <view class="g_item_r">
+                    <button class="g_report">立即报名</button>
+                    <view class="g_people">
+                        已报名
+                        <text>{{hasJoinPeople}}人</text>
+                    </view>
+                </view>
+            </view>
+            <view class="g_item_time">
+                <view>
+                    活动时间：
+                    <text>{{activeTime}}</text> 成团人数
+                    <text>{{groupPeople}}人</text>
+                </view>
+                <view>
+                    报名截止：
+                    <text>{{endTime}}</text> 活动地点：
+                    <text>{{address}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="item3 border_top05" bindtap='loadMore'>
+        <view wx:if="{{!showMore}}">活动详情
+            <label class="seemore"></label>
+        </view>
+        <view wx:else>收起
+            <label class="fold"></label>
+        </view>
+    </view>
+</template>

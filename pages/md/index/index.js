@@ -1,4 +1,6 @@
 // pages/md/index/index.js
+var common = require('../common.js');
+
 let col1H = 0;
 let col2H = 0;
 Page({
@@ -31,6 +33,17 @@ Page({
                 }
             ],
             addressLength: 2,
+            activeList: {
+                couponTime: '2018-03-10 12:30',
+                logoUrl: '../img/history_logo.jpg',
+                title: '御格家居',
+                desc: '原木椅子的说明内容，采用杨树的木头手工打造而成。',
+                hasJoinPeople: 26,
+                activeTime: '2018-03-10 12:30',
+                groupPeople: 30,
+                endTime: '2018-03-12 12:30',
+                address: '红星美凯龙1楼'
+            },
             tabList: {
                 tabNameArr: ['产品', '门店', '案例', '视频'],
                 // 产品
@@ -215,7 +228,7 @@ Page({
 
     loadImages: function () {
         let images =  this.data.detailList.tabList.productList.productArr;
-    console.log(images)
+
         let baseId = "img-" + (+new Date());
 
         for (let i = 0; i < images.length; i++) {
@@ -260,7 +273,43 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        var html;
+        var that = this;
+        var times = (new Date(this.data.detailList.activeList.couponTime) - new Date().getTime()) / 1000;
+        var timer = null;
+        timer = setInterval(function () {
+            var day = 0,
+                hour = 0,
+                minute = 0,
+                second = 0;//时间默认值
+            if (times > 0) {
+                day = Math.floor(times / (60 * 60 * 24));
+                hour = Math.floor(times / (60 * 60)) - (day * 24);
+                minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
+                second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+            }
+            if (day <= 9) day = '0' + day;
+            if (hour <= 9) hour = '0' + hour;
+            if (minute <= 9) minute = '0' + minute;
+            if (second <= 9) second = '0' + second;
+            //
+            html = '<text>' + day + '</text> 天'
+                + '<text>' + hour + '</text> 时'
+                + '<text>' + minute + '</text> 分'
+                + '<text>' + second + '</text> 秒'
+            // console.log(day + "天:" + hour + "小时：" + minute + "分钟：" + second + "秒");
+            times--;
 
+            that.setData({
+                'detailList.activeList.countDownDay': day,
+                'detailList.activeList.countDownHour': hour,
+                'detailList.activeList.countDownMinute': minute,
+                'detailList.activeList.countDownSecond': second,
+            })
+        }, 1000);
+        if (times <= 0) {
+            clearInterval(timer);
+        }
     },
 
     /**
