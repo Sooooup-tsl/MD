@@ -1,16 +1,19 @@
 <!--pages/md/introduce/introduce.wxml-->
 
 <view class="main">
-    <image src="{{imgurl}}/1.jpg" class="pic_top" mode="widthFix"></image>
+    <image src="{{introduce.bannerImg}}" class="pic_top" mode="widthFix"></image>
     <view class="text-center intro_name border_bottom05">
-        <text class="title">壹佰家居CLASSICI</text>
-        <text class="desc">专门为你定制最顶尖的时尚家具~~</text>
+        <text class="title">{{introduce.title}}</text>
+        <text class="desc">{{introduce.desc}}</text>
     </view>
     <view class="content">
-        <text class="content_word">描s述由各种物质组成的巨型球状天体，就叫做星球。星球有一定的形状，有自己的运行轨道。描述由各种物质组成的巨型球状天体，叫做星球。ss星球有一定的形状，有自己的运行轨道。描述由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</text>
-        <image src="{{imgurl}}/2.jpg" class="content_pic" mode="widthFix"></image>
+        <block wx:for="{{introduce.detailList}}" wx:key="index">
+        <text class="content_word">{{item.desc}}</text>
+        <image src="{{item.url}}" class="content_pic" mode="widthFix"></image>
+        </block>
     </view>
 </view>
 
 <import src="../template/footer.wxml"/>
 <template is="footer_page" data="{{imgurl}}"></template>
+

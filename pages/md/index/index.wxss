@@ -58,6 +58,7 @@
     width: 20rpx;
     padding-right: 30rpx;
     flex: 0 0 auto;
+    height: 40rpx;
 }
 .item2_c {
     width: 545rpx;
@@ -72,6 +73,7 @@
     padding-left: 30rpx;
     right: 30rpx;
     width: 34rpx;
+    height: 60rpx;
 }
 .item3 {
     position: relative;
@@ -114,6 +116,15 @@
 	-moz-transform: rotate(45deg);
 	-o-transform: rotate(45deg);
 	transform: rotate(45deg);
+}
+.notice {
+    position: relative;
+    background: #fff;
+    font-size: 24rpx;
+    line-height: 2;
+    color: #666;
+    padding: 30rpx;
+    text-align: left
 }
 .group_item {
     position: relative;
@@ -189,11 +200,17 @@
     margin: 0;
     padding: 0
 }
+.g_report.mt {
+    margin-top: -20rpx;
+}
 .g_people {
     color: #666;
     font-size: 20rpx;
     text-align: center;
     margin-top: 10rpx;
+}
+.g_people .red_word {
+    color: #fe3a2e;
 }
 .g_item_time {
     font-size: 24rpx;
@@ -278,4 +295,89 @@
     padding: 20rpx 15rpx;
     font-size: 26rpx;
     color: #000;
+}
+/* 弹框 */
+.layer {
+    background: rgba(0,0,0,0.7);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100
+}
+.pop_box {
+    position: fixed;
+    width: calc(100% - 60px);
+    top: 100rpx;
+    left: 30px;
+    margin: auto;
+    background: #fff;
+    padding: 40rpx 30rpx;
+    box-sizing: border-box;
+    border-radius: 10rpx;
+    z-index: 101;
+}
+.pop_box .title {
+    font-size: 36rpx;
+    text-align: center;
+}
+.pop_content label{
+    display: inline-block;
+    font-size: 28rpx;
+    width: 100rpx;
+    height:68rpx;
+    line-height: 68rpx;
+    text-align: left;
+    vertical-align: top
+}
+.pop_content input {
+    display: inline-block;
+    width: 462rpx;
+    background: #efeff4;
+    height: 68rpx;
+    font-size: 26rpx;
+    padding-left: 30rpx;
+    box-sizing: border-box
+}
+.pop_content .sex_box {
+    display:inline-block;
+    width:462rpx;
+    background:#efeff4;
+    height:68rpx;
+    font-size:26rpx;
+    padding-left:30rpx;
+    box-sizing:border-box;
+    vertical-align: top
+
+}
+.pop_content .send{
+    position:absolute;
+    top:9rpx;
+    right:30rpx;
+    color:#fff;
+    font-size:24rpx;
+    height:50rpx;
+    line-height: 50rpx;
+    width:140rpx;
+    background: #fe3a2e;
+    border:0;
+    margin:0;
+    padding:0;
+    z-index:100;
+
+
+}
+.pop_box .submit{
+    color: #fff;
+    font-size: 30rpx;
+    height: 75rpx;
+    background: #fe3a2e;
+    border: 0;
+    margin: 0;
+    padding: 0
+}
+.mb-40 {
+    position: relative;
+    margin-bottom: 40rpx;
 }

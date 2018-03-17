@@ -4,10 +4,10 @@
         <view class="g_item_h border_bottom05">
             <text class="g_word">团购优惠</text>
             <view class="g_countdown">
-                <text>{{countDownDay}}</text>天
-                <text>{{countDownHour}}</text>时
-                <text>{{countDownMinute}}</text>分
-                <text>{{countDownSecond}}</text>秒
+                <text>{{countDownDay}}</text> 天
+                <text>{{countDownHour}}</text> 时
+                <text>{{countDownMinute}}</text> 分
+                <text>{{countDownSecond}}</text> 秒
             </view>
         </view>
         <view class="g_item_content ">
@@ -20,33 +20,93 @@
                     <text class="desc nowrap2">{{desc}}</text>
                 </view>
                 <view class="g_item_r">
-                    <button class="g_report">立即报名</button>
-                    <view class="g_people">
-                        已报名
-                        <text>{{hasJoinPeople}}人</text>
-                    </view>
+                    <block wx:if="{{active_status == 100}}">
+                        <navigator url="/pages/md/share/share?buyingId={{teamId}}">
+                            <button class="g_report" bindtap="">分享好友</button>
+                        </navigator>
+                        <view class="g_people">
+                            报名成功!
+                        </view>
+                    </block>
+                    <block wx:elif="{{active_status == 101}}">
+                        <button class="g_report mt" open-type="share">继续分享</button>
+                        <view class="g_people">
+                            <text class="red_word">{{active_forward_num}}</text><text>/{{groupPeople}}人点击</text>
+                        </view>
+                        <view class="g_people">
+                            可领<text class="red_word">{{active_forward_num >= groupPeople ? '1' : '0'}}</text>份礼物
+                        </view>
+                    </block>
+                    <block wx:elif="{{active_status == 200}}">
+                        <button class="g_report" bindtap="joinGroup">立即报名</button>
+                        <view class="g_people">
+                            已报名
+                            <text class="red_word">{{hasJoinPeople}}人</text>
+                        </view>
+                    </block>
+                    <block wx:else>
+                        <button class="g_report" bindtap="showPop">立即报名</button>
+                        <view class="g_people">
+                            已报名
+                            <text class="red_word">{{hasJoinPeople}}人</text>
+                        </view>
+                    </block>
                 </view>
             </view>
             <view class="g_item_time">
                 <view>
                     活动时间：
-                    <text>{{activeTime}}</text> 成团人数
+                    <text>{{activeTime}}</text><text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;成团人数：</text>
                     <text>{{groupPeople}}人</text>
                 </view>
                 <view>
                     报名截止：
-                    <text>{{endTime}}</text> 活动地点：
+                    <text>{{endTime}}</text><text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;活动地点：</text>
                     <text>{{address}}</text>
                 </view>
             </view>
         </view>
     </view>
-    <view class="item3 border_top05" bindtap='loadMore'>
-        <view wx:if="{{!showMore}}">活动详情
+    <block  wx:if="{{is_show_info}}">
+    <view class="notice border_top05" wx:if="{{isFold}}">
+        <text>活动须知</text>
+        <view>{{know}}</view>   
+    </view>
+    <view class="item3 border_top05" bindtap='showActive'>
+        <view wx:if="{{!isFold}}">活动须知
             <label class="seemore"></label>
         </view>
-        <view wx:else>收起
-            <label class="fold"></label>
+        <view wx:else>
+            收起<label class="fold"></label>
         </view>
     </view>
+    </block>
+    <view class="kefu_box border_top05">
+        <view class="kefu">
+            <view class="icon_kefu">
+                <image src="{{imgurl}}/kefu.png" mode="widthFix"></image>
+            </view>
+            <text>联系客服</text>
+        </view>
+
+        <block wx:if="{{active_status == 100}}">
+            <navigator style="display:inline-block;" url="/pages/md/share/share?buyingId={{teamId}}">
+                <view class="buy_btn">分享好友</view>                
+            </navigator>
+        </block>
+        <block wx:elif="{{active_status == 101}}">
+            <view class="buy_btn" open-type="share">继续分享</view>                
+        </block>
+        <block wx:elif="{{active_status == 200}}">
+            <view class="buy_btn" bindtap="joinGroup">立即团购报名</view>
+        </block>
+        <block wx:else>
+            <view class="buy_btn" bindtap="showPop">>立即团购报名</view> 
+        </block>
+        
+    </view>
+
+
+    <import src="../template/pop.wxml" />
+    <template is="pop_page" data="{{isShowPop}}"></template>  
 </template>

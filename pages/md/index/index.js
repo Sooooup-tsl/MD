@@ -3,6 +3,9 @@ var common = require('../common.js');
 
 let col1H = 0;
 let col2H = 0;
+let sendTime = 0;
+let isLoad = false;
+
 Page({
 
     /**
@@ -12,135 +15,11 @@ Page({
     data: {
         brandId: '',
         imgurl: '../img', // 本地url
-        detailList: {
-            bannerUrls: [
-                'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-                'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
-            ],
-            logoUrl: '../img/history_logo.jpg',
-            title: '御格家居',
-            desc: '专门为您定制最顶尖的时尚家居居居居居居专门为您定制最顶尖的时尚家居居居居居居',
-            brandId: '123',
-            addressList: [
-                {
-                    address: '江苏省苏州市吴中区红星美凯龙横塘店三楼B江苏省苏州市吴中区红星美凯龙横塘店三楼B座311-8商铺南侧江苏省苏州市吴中区红星美凯龙横塘店三楼B江苏省苏州市吴中区红星美凯龙横塘店三楼B座311-8商铺南侧',
-                    phonenumber: '123456'
-                },
-                {
-                    address: '江苏省苏州市吴中区红星美凯龙横塘店三楼B江苏省苏州市吴中区红星美凯龙横塘店三楼B座311-8商铺南侧江苏省苏州市吴中区红星美凯龙横塘店三楼B江苏省苏州市吴中区红星美凯龙横塘店三楼B座311-8商铺南侧',
-                    phonenumber: '12345689'
-                }
-            ],
-            addressLength: 2,
-            activeList: {
-                couponTime: '2018-03-10 12:30',
-                logoUrl: '../img/history_logo.jpg',
-                title: '御格家居',
-                desc: '原木椅子的说明内容，采用杨树的木头手工打造而成。',
-                hasJoinPeople: 26,
-                activeTime: '2018-03-10 12:30',
-                groupPeople: 30,
-                endTime: '2018-03-12 12:30',
-                address: '红星美凯龙1楼'
-            },
-            tabList: {
-                tabNameArr: ['产品', '门店', '案例', '视频'],
-                // 产品
-                productList: {
-                    productArr: [
-                        {
-                            pic: "../img/p1.jpg",
-                            title: '实木边几原木风格'
-                        },
-                        {
-                            pic: "../img/p2.jpg",
-                            title: 'MUJI 原木风格茶几抽屉柜'
-                        },
-                        {
-                            pic: "../img/p3.jpg",
-                            title: 'MUJI 无印良品带边柜水曲柳 实木 换鞋凳座椅棉质椅套'
-                        },
-                        {
-                            pic: "../img/p4.jpg",
-                            title: '棉麻简约窗帘'
-                        },
-                        {
-                            pic: "../img/p5.jpg",
-                            title: '布艺三人沙发'
-                        },
-                        {
-                            pic: "../img/p6.jpg",
-                            title: '布艺三人沙发'
-                        },
-                        {
-                            pic: "../img/p7.jpg",
-                            title: '布艺三人沙发'
-                        },
-                        {
-                            pic: "../img/p8.jpg",
-                            title: '布艺三人沙发'
-                        },
-                        {
-                            pic: "../img/p9.jpg",
-                            title: '布艺三人沙发'
-                        }
-                    ]
-                },
-                // 门店
-                storeList: {
-                    storeArr: [
-                        {
-                            title: '标题一',
-                            desc: '描述由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。',
-                            imgurl: '../img/1.jpg'
-                        },
-                        {
-                            title: '标题一',
-                            desc: '描述由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。',
-                            imgurl: '../img/1.jpg'
-                        }
-                    ]
-                },
-                // 案例
-                caseList: {
-                    caseArr: [{
-                        title: '标题一',
-                        desc: '描述由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。',
-                        imgurls: [
-                            'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                            'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-                            'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
-                        ],
-                        time: 1520001624360
-                    }, {
-                        title: '标题二',
-                        desc: '描述由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。',
-                        imgurls: [
-                            'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                            'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-                            'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg',
-                            'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-                            'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg'
-                        ],
-                        time: 1519862400000
-                    }]
-                },
-                // 视频
-                videoList: {
-                    videoArr: [
-                        {
-                            desc: '视频描述由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。',
-                            videourl: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400'
-                        },
-                        {
-                            desc: '视频描述由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。',
-                            videourl: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400'
-                        }
-                    ]
-                },
-            }
-        },
+        ownOpenId: '', // 自己的openId
+        shareOpenId: '', // 分享者的openId 链接上带参
+        isShowInfo: '',
+        isShowPop: false, // 是否展示报名弹框
+        detailList: '',
         showMore: false,
         limitNum: 1,
         currentTab: 0,
@@ -164,26 +43,32 @@ Page({
             limitNum: !flag ? this.data.detailList.addressLength : 1
         });
     },
+    // 展开活动须知
+    showActive () {
+        this.setData({
+            'detailList.activeList.isFold': !this.data.detailList.activeList.isFold
+        });
+    },
     // 切换Tab
     changeTab(e) {
         this.setData({
             currentTab: e.currentTarget.dataset.index
-        })
+        });
+        if (e.currentTarget.dataset.index == 0) {
+            isLoad = true;
+        }
     },
     // 预览案例图片
     previewImg(e) {
-        // wx.showToast({
-        //     title: '成功',
-        //     icon: 'success',
-        //     duration: 2000
-        // })
-        console.log(e)
         wx.previewImage({
             current: e.target.dataset.url, // 当前显示图片的http链接
             urls: e.target.dataset.imgs // 需要预览的图片http链接列表
         })
     },
     onImageLoad: function (e) {
+        if (isLoad) {
+            return;
+        }
         let imageId = e.currentTarget.id;
         let oImgW = e.detail.width;         //图片原始宽度
         let oImgH = e.detail.height;        //图片原始高度
@@ -221,11 +106,8 @@ Page({
             col2: col2
         };
 
-
-
         this.setData(data);
     },
-
     loadImages: function () {
         let images =  this.data.detailList.tabList.productList.productArr;
 
@@ -239,29 +121,310 @@ Page({
             images: images
         });
     },
+    // 请求页面数据
+    getInitData() {
+        var _this = this;
+
+        wx.request({
+            url: 'https://mdmj.devdexterity.com/api/store/init',
+            data: {
+                'brandId': _this.data.brandId,
+                'from': _this.data.ownOpenId,
+                'to': _this.data.shareOpenId
+            },
+            header: {
+                'content-type': 'application/json' // 默认值
+            },
+            success: function (res) {
+                _this.setData({
+                    detailList: res.data.data,
+                    hasActive: !common.isBlank(res.data.data.activeList)
+                });
+
+                wx.getSystemInfo({
+                    success: (res) => {
+                        let ww = res.windowWidth;
+                        let wh = res.windowHeight;
+                        let imgWidth = ww * 0.48;
+
+                        _this.setData({
+                            imgWidth: imgWidth
+                        });
+
+                        //加载首组图片
+                        _this.loadImages();
+                    }
+                });
+
+                // 团购优惠倒计时
+                _this.countDown();
+
+                wx.hideLoading(); 
+            }
+        });
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.setData({
-            brandId: options.brandId
+        wx.showLoading({
+            title: '正在加载中'
+        });
+
+        var _this = this;
+
+        _this.setData({
+            brandId: options.brandId,
+            shareOpenId: options.shareOpenId
         })
-        wx.getSystemInfo({
-            success: (res) => {
-                let ww = res.windowWidth;
-                let wh = res.windowHeight;
-                let imgWidth = ww * 0.48;
 
-                this.setData({
-                    imgWidth: imgWidth
+        wx.getUserInfo({
+            success: function (res) {
+                var userInfo = res.userInfo
+                var nickName = userInfo.nickName
+
+                // 登录
+                wx.login({
+                    success: function (res) {
+                        if (res.code) {
+                            //发起网络请求
+                            wx.request({
+                                url: 'https://mdmj.devdexterity.com/api/default/login',
+                                data: {
+                                    code: res.code,
+                                    userName: nickName
+                                },
+                                header: {
+                                    'content-type': 'application/json' // 默认值
+                                },
+                                method: 'POST',
+                                success: function (res) {
+                                    _this.setData({
+                                        'ownOpenId': res.data.data.open_id
+                                    });
+
+                                    _this.getInitData();                                   
+                                }
+                            })
+                        } else {
+                            console.log('登录失败！' + res.errMsg)
+                        }
+                    }
                 });
-
-                //加载首组图片
-                this.loadImages();
             }
         })
     },
+    countDown () {
+        if (this.data.hasActive) {
+            var html;
+            var that = this;
+            var times = (new Date(this.data.detailList.activeList.couponTime) - new Date().getTime()) / 1000;
+            var timer = null;
+            timer = setInterval(function () {
+                var day = 0,
+                    hour = 0,
+                    minute = 0,
+                    second = 0;//时间默认值
+                if (times > 0) {
+                    day = Math.floor(times / (60 * 60 * 24));
+                    hour = Math.floor(times / (60 * 60)) - (day * 24);
+                    minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
+                    second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+                }
+                if (day <= 9) day = '0' + day;
+                if (hour <= 9) hour = '0' + hour;
+                if (minute <= 9) minute = '0' + minute;
+                if (second <= 9) second = '0' + second;
+                //
+                html = '<text>' + day + '</text> 天'
+                    + '<text>' + hour + '</text> 时'
+                    + '<text>' + minute + '</text> 分'
+                    + '<text>' + second + '</text> 秒';
 
+                times--;
+
+                that.setData({
+                    'detailList.activeList.countDownDay': day,
+                    'detailList.activeList.countDownHour': hour,
+                    'detailList.activeList.countDownMinute': minute,
+                    'detailList.activeList.countDownSecond': second
+                })
+            }, 1000);
+            if (times <= 0) {
+                clearInterval(timer);
+            }
+
+            that.setData({
+                'detailList.activeList.active_forward_num': that.data.detailList.active_forward_num,
+                'detailList.activeList.active_status': that.data.detailList.active_status
+                // 'detailList.activeList.active_status': 100 // 201未注册未参团 200 已注册未参团 100 已参团未分享 101 已参团已转发
+            })
+        }
+    },
+    // 未注册未参团
+    showPop() {
+        this.setData({
+            'detailList.activeList.isShowPop': !this.data.detailList.activeList.isShowPop
+        })
+    },
+    // 已注册未参团 
+    joinGroup() {
+        //发起网络请求
+        var _this = this;
+        wx.request({
+            url: 'https://mdmj.devdexterity.com/api/store/join-team',
+            data: {
+                brandId: _this.data.brandId,
+                openId: _this.data.ownOpenId
+            },
+            header: {
+                'content-type': 'application/json' // 默认值
+            },
+            success: function (res) {
+                wx.showToast({
+                    title: res.data.message,
+                    icon: 'none'
+                });
+
+                _this.getInitData();
+            }
+        })
+    },
+    // 获取验证码实时
+    inputMobile(e) {
+        this.setData({
+            inputMobile: e.detail.value
+        })
+    },
+    // 发送验证码
+    sendCode() {
+        var _this = this;
+        var mobile = _this.data.inputMobile
+
+        if (!mobile) {
+            wx.showToast({
+                title: '请输入手机号',
+                icon: 'none'
+            });
+        } else if (!common.checkPhone(mobile)) {
+            wx.showToast({
+                title: '请输入正确的手机号',
+                icon: 'none'
+            });
+        } else {
+
+            if (sendTime + 60000 > Date.now()) {
+                wx.showToast({
+                    title: '请60秒后重新发送',
+                    icon: 'none'
+                });
+
+                return;
+            }
+            wx.request({
+                url: 'https://mdmj.devdexterity.com/api/sms/send-code',
+                data: {
+                    mobile: mobile,
+                    openId: _this.data.ownOpenId
+                },
+                header: {
+                    'content-type': 'application/json' // 默认值
+                },
+                method: 'POST',
+                success: function (res) {
+                    if (res.data.code == 200) {
+                        wx.showToast({
+                            title: '验证码已发送',
+                            icon: 'none'
+                        });
+
+                        sendTime = Date.now();
+                    }
+                }
+            })
+        }
+    },
+    // 提交信息
+    formSubmit (e) {
+        var target = e.detail.value;
+        
+        if (!target.iptname) {
+            wx.showToast({
+                title: '请输入真实姓名',
+                icon: 'none'
+            })
+        } else if (!target.iptsex) {
+            wx.showToast({
+                title: '请输入您的性别',
+                icon: 'none'
+            })
+        } else if (!target.iptmobile) {
+            wx.showToast({
+                title: '请输入您的手机号',
+                icon: 'none'
+            })
+        } else if (!common.checkPhone(mobile)) {
+            wx.showToast({
+                title: '请输入正确的手机号',
+                icon: 'none'
+            })
+        } else if (!target.iptcode) {
+            wx.showToast({
+                title: '请输入验证码',
+                icon: 'none'
+            })
+        } else if (!target.iptarea) {
+            wx.showToast({
+                title: '请输入您所在的小区名称',
+                icon: 'none'
+            })
+        } else if (!target.ipthouse) {
+            wx.showToast({
+                title: '请输入您的完整房号',
+                icon: 'none'
+            })
+        } else {
+            this.ajaxSubmit(target);        
+        }
+
+    },
+    ajaxSubmit(target) {
+        //发起网络请求
+        var _this = this;
+        wx.request({
+            url: 'https://mdmj.devdexterity.com/api/sms/validate-code',
+            data: {
+                mobile: target.iptmobile,
+                code: target.iptcode,
+                sex: target.iptsex, // 1: 男 2：女
+                realname: target.iptname,
+                area: target.iptarea, // 小区
+                house: target.ipthouse, // 房号
+                openId: _this.data.ownOpenId
+            },
+            header: {
+                'content-type': 'application/json' // 默认值
+            },
+            method: 'POST',
+            success: function (res) {
+                if (res.data.code == 200){
+                    wx.showToast({
+                        title: '报名成功',
+                        icon: 'success',
+                        duration: 2000
+                    });
+
+                    _this.getInitData();
+                } else {
+                    wx.showToast({
+                        title: res.data.message[0],
+                        icon: 'loading',
+                        duration: 2000
+                    })
+                }
+            }
+        })
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -273,43 +436,6 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        var html;
-        var that = this;
-        var times = (new Date(this.data.detailList.activeList.couponTime) - new Date().getTime()) / 1000;
-        var timer = null;
-        timer = setInterval(function () {
-            var day = 0,
-                hour = 0,
-                minute = 0,
-                second = 0;//时间默认值
-            if (times > 0) {
-                day = Math.floor(times / (60 * 60 * 24));
-                hour = Math.floor(times / (60 * 60)) - (day * 24);
-                minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
-                second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
-            }
-            if (day <= 9) day = '0' + day;
-            if (hour <= 9) hour = '0' + hour;
-            if (minute <= 9) minute = '0' + minute;
-            if (second <= 9) second = '0' + second;
-            //
-            html = '<text>' + day + '</text> 天'
-                + '<text>' + hour + '</text> 时'
-                + '<text>' + minute + '</text> 分'
-                + '<text>' + second + '</text> 秒'
-            // console.log(day + "天:" + hour + "小时：" + minute + "分钟：" + second + "秒");
-            times--;
-
-            that.setData({
-                'detailList.activeList.countDownDay': day,
-                'detailList.activeList.countDownHour': hour,
-                'detailList.activeList.countDownMinute': minute,
-                'detailList.activeList.countDownSecond': second,
-            })
-        }, 1000);
-        if (times <= 0) {
-            clearInterval(timer);
-        }
     },
 
     /**
@@ -343,7 +469,33 @@ Page({
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function () {
+    onShareAppMessage: function (res) {
+        var _this = this;
 
+        return {
+            title: '自定义转发标题',
+            path: '/pages/md/index/index?brandId=' + this.data.brandId + '&shareOpenId=' + this.data.ownOpenId,
+            success: function (res) {
+                wx.request({
+                    url: 'https://mdmj.devdexterity.com/api/store/forward',
+                    data: {
+                        openId: _this.data.ownOpenId,
+                        brandId: _this.data.brandId
+                    },
+                    header: {
+                        'content-type': 'application/json' // 默认值
+                    },
+                    success: function (res) {
+                        wx.showToast({
+                            title: '转发成功',
+                        })
+                    }
+                })
+            },
+            fail: function (res) {
+                // 转发失败
+            }
+        }
     }
 })
+

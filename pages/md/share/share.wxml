@@ -1,7 +1,7 @@
 <!--pages/md/share/share.wxml-->
 <view class="main">
     <view class="pic_top">
-        <image src="{{imgurl}}/share_bg.jpg" mode="widthFix"></image>
+        <image src="{{shareList.forward_gift_logo}}" mode="widthFix"></image>
     </view>
 
     <view>
@@ -15,7 +15,7 @@
             </view>
             <view class="rule_content">
                 <view>分享到微信群（最好是<text>业主群</text>）</view>
-                <view><text>5位好友</text>点击后奖励手工实木创意小木马</view>
+                <view><text>{{shareList.forward_gift_get_num}}位好友</text>点击后奖励{{shareList.gift_describe}}</view>
                 <view><text>（每户奖励一个）</text></view>
             </view>
         </view>

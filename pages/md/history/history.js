@@ -6,25 +6,67 @@ Page({
      */
     data: {
         imgurl: '../img', // 本地url
-        historyList: [
-            {
-                title: '御格家居',
-                desc: '专门为您定制最顶尖的时尚家居居居居居居专门为您定制最顶尖的时尚家居居居居居居',
-                logoUrl: '../img/history_logo.jpg',
-                brandId: '123'
+        openId: '',
+        historyList: ''
+    },
+    getInitData() {
+        var _this = this;
+        wx.request({
+            url: 'https://mdmj.devdexterity.com/api/store/history',
+            data: {
+                openId: _this.data.openId, //  当前团购ID
             },
-            {
-                title: '御格家居',
-                desc: '专门为您定制最顶尖的时尚家居居居居居居专门为您定制最顶尖的时尚家居居居居居居',
-                logoUrl: '../img/history_logo.jpg',
-                brandId: '223'
+            header: {
+                'content-type': 'application/json' // 默认值
+            },
+            success: function (res) {
+                _this.setData({
+                    historyList: res.data.data
+                });
+
+                wx.hideLoading()
             }
-        ]
+        })
+    },
+    jumpPage(e) {
+        var url = e.currentTarget.dataset.url;
+        wx.reLaunch({
+            url: url
+        })
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        var _this = this; 
+        // 登录
+        wx.login({
+            success: function (res) {
+                if (res.code) {
+                    //发起网络请求
+                    wx.request({
+                        url: 'https://mdmj.devdexterity.com/api/default/login',
+                        data: {
+                            code: res.code
+                        },
+                        header: {
+                            'content-type': 'application/json' // 默认值
+                        },
+                        method: 'POST',
+                        success: function (res) {
+                            _this.setData({
+                                'openId': res.data.data.open_id
+                            });
+
+                            _this.getInitData();
+                        }
+                    })
+                } else {
+                    console.log('登录失败！' + res.errMsg)
+                }
+            }
+        });
+        
     },
 
     /**
@@ -38,7 +80,9 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        wx.showLoading({
+            title: '正在加载中'
+        })
     },
 
     /**

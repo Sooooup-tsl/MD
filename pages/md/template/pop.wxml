@@ -1,0 +1,42 @@
+<template name="pop_page">
+    <block wx:if="{{isShowPop}}">
+    <view class="pop_box">
+        <view class="close"></view>
+        <form bindsubmit="formSubmit">
+            <view class="pop_content">
+                <view class="title mb-40">填写报名信息</view>
+                <view class="mb-40">
+                    <label>姓名</label>
+                    <input placeholder='请输入完整姓名' name="iptname" auto-focus></input>
+                </view>
+                <view class="mb-40">
+                    <label>性别</label>
+                    <radio-group name="iptsex" class="sex_box"> 
+                        <label><radio value="1" color="#fe3a2e"/>男</label>
+                        <label><radio value="2" color="#fe3a2e"/>女</label>
+                    </radio-group>
+                </view>
+                <view class="mb-40">
+                    <label>手机号</label>
+                    <input placeholder='请输入手机号' maxlength='11' name="iptmobile" bindinput='inputMobile'></input>
+                </view>
+                <view class="mb-40">
+                    <label>验证码</label>
+                    <input placeholder='请输入验证码' name="iptcode"></input>
+                    <button class="send" bindtap='sendCode'>发送验证码</button>
+                </view>
+                <view class="mb-40">
+                    <label>小区</label>
+                    <input placeholder='请输入您所在的小区名称' name="iptarea"></input>
+                </view>
+                <view class="mb-40">
+                    <label>房号</label>
+                    <input placeholder='请输入您的完整房号' name="ipthouse"></input>
+                </view>
+            </view>
+            <button class="submit" formType="submit">提交信息</button>
+        </form>
+    </view>
+    <view class="layer"></view>
+    </block>
+</template>

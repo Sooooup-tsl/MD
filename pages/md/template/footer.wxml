@@ -1,9 +1,9 @@
 <template name="footer_page">    
     <view class="text-center">
-        <navigator url="/pages/md/history/history" hover-class="none" class="icon_history">
+        <navigator url="/pages/md/history/history" wx:if="{{!isHide}}" hover-class="none" class="icon_history">
             <image src="{{imgurl}}/history.png" mode="widthFix"></image>
         </navigator>
-        <view class="icon_top">
+        <view class="icon_top" wx:if="{{!isHide}}">
             <image src="{{imgurl}}/top.png" mode="widthFix"></image>
         </view>
         <view class="footer_img">
