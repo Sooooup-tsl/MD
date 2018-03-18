@@ -7,6 +7,7 @@ Page({
      */
     data: {
         imgurl: '../img', // 本地url
+        url: '',
         introduce: {
             bannerImg: '../img/1.jpg',
             title: '壹佰家居CLASSICI',
@@ -26,7 +27,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        this.setData({
+            url: "https://mdmj.devdexterity.com/api/page/intro?brandId=" + options.brandId
+        })
     },
 
     /**

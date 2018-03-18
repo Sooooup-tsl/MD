@@ -23,7 +23,7 @@
             </navigator>
         </view>
 
-        <block wx:for="{{detailList.addressList}}" wx:key="phonenumber" wx:if="{{ index< limitNum }}">
+        <block wx:for="{{detailList.addressList}}" wx:key="{{index}}" wx:if="{{ index< limitNum }}">
             <view class="item2 flex_box border_bottom05">
                 <view class="item2_l">
                     <image src="{{imgurl}}/location.png" mode="widthFix"></image>

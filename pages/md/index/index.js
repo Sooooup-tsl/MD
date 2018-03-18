@@ -23,7 +23,6 @@ Page({
         showMore: false,
         limitNum: 1,
         currentTab: 0,
-
         imgWidth: 0,
         images: [],
         col1: [],
@@ -51,9 +50,14 @@ Page({
     },
     // 切换Tab
     changeTab(e) {
+        var index = e.currentTarget.dataset.index;
+        var isVideo = (index == 3 ? true : false);
+
         this.setData({
-            currentTab: e.currentTarget.dataset.index
+            currentTab: e.currentTarget.dataset.index,
+            'detailList.activeList.isVideoTab': isVideo
         });
+
         if (e.currentTarget.dataset.index == 0) {
             isLoad = true;
         }
@@ -218,7 +222,7 @@ Page({
         if (this.data.hasActive) {
             var html;
             var that = this;
-            var times = (new Date(this.data.detailList.activeList.couponTime) - new Date().getTime()) / 1000;
+            var times = (new Date(this.data.detailList.activeList.couponTime.replace(/-/ig, '/')).getTime() - new Date().getTime()) / 1000;
             var timer = null;
             timer = setInterval(function () {
                 var day = 0,
@@ -257,7 +261,7 @@ Page({
             that.setData({
                 'detailList.activeList.active_forward_num': that.data.detailList.active_forward_num,
                 'detailList.activeList.active_status': that.data.detailList.active_status
-                // 'detailList.activeList.active_status': 100 // 201未注册未参团 200 已注册未参团 100 已参团未分享 101 已参团已转发
+                // 'detailList.activeList.active_status': 201 // 201未注册未参团 200 已注册未参团 100 已参团未分享 101 已参团已转发
             })
         }
     },
@@ -363,7 +367,7 @@ Page({
                 title: '请输入您的手机号',
                 icon: 'none'
             })
-        } else if (!common.checkPhone(mobile)) {
+        } else if (!common.checkPhone(target.iptmobile)) {
             wx.showToast({
                 title: '请输入正确的手机号',
                 icon: 'none'
@@ -400,7 +404,8 @@ Page({
                 realname: target.iptname,
                 area: target.iptarea, // 小区
                 house: target.ipthouse, // 房号
-                openId: _this.data.ownOpenId
+                openId: _this.data.ownOpenId,
+                brandId: _this.data.brandId
             },
             header: {
                 'content-type': 'application/json' // 默认值

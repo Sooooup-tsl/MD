@@ -1,5 +1,5 @@
 <!--pages/md/share/share.wxml-->
-<view class="main">
+<view class="main share_main">
     <view class="pic_top">
         <image src="{{shareList.forward_gift_logo}}" mode="widthFix"></image>
     </view>

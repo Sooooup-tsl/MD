@@ -26,34 +26,35 @@
     z-index: 3
 }
 .kefu_box{
-    position: fixed;
+    position: fixed; 
     width: 100%;
     bottom: 0;
+    left: 0;
     font-size: 34rpx;
     z-index: 2;
     height:110rpx;
-    background: #fe3a2e;
 }
 .kefu{
+    float: left;
     background: #fff;
     width: 155rpx;
     font-size: 24rpx;
     text-align: center;
-    display: inline-block;
+    position: relative;
     height:110rpx;
     color: #333;
-    overflow: hidden
 }
 .icon_kefu {
-    width: 43rpx;
-    height: 40rpx;
-    margin: 20rpx auto 10rpx auto;
+    width: 51rpx;
+    height: 69rpx;
+    margin: 0 auto;
 }
 .buy_btn{
-    display: inline-block;
+    float: left;
     color: #fff;
     width: 596rpx;
     text-align: center;
-    overflow:hidden;
     line-height: 110rpx;
+    height: 110rpx;
+    background: #fe3a2e;
 }

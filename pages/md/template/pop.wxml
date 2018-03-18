@@ -1,7 +1,9 @@
 <template name="pop_page">
     <block wx:if="{{isShowPop}}">
     <view class="pop_box">
-        <view class="close"></view>
+        <view class="close" bindtap="showPop">
+            <icon type="cancel" color="#fff" size="50"></icon>
+        </view>
         <form bindsubmit="formSubmit">
             <view class="pop_content">
                 <view class="title mb-40">填写报名信息</view>

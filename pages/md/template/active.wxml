@@ -9,6 +9,9 @@
                 <text>{{countDownMinute}}</text> 分
                 <text>{{countDownSecond}}</text> 秒
             </view>
+            <navigator class="g_seeDetail" url="/pages/md/detail/detail?buyingId={{teamId}}">
+                <text>查看活动详情</text>
+            </navigator>
         </view>
         <view class="g_item_content ">
             <view class="g_item flex_box border_bottom05">
@@ -81,7 +84,7 @@
         </view>
     </view>
     </block>
-    <view class="kefu_box border_top05">
+    <view class="kefu_box border_top05" wx:if="{{!isVideoTab}}">
         <view class="kefu">
             <view class="icon_kefu">
                 <image src="{{imgurl}}/kefu.png" mode="widthFix"></image>
@@ -101,7 +104,7 @@
             <view class="buy_btn" bindtap="joinGroup">立即团购报名</view>
         </block>
         <block wx:else>
-            <view class="buy_btn" bindtap="showPop">>立即团购报名</view> 
+            <view class="buy_btn" bindtap="showPop">立即团购报名</view> 
         </block>
         
     </view>

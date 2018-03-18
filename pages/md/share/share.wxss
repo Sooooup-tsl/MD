@@ -1,6 +1,12 @@
 /* pages/md/share/share.wxss */
 @import '../base.wxss';
-
+.share_main {
+    position: relative;
+    height: 100%;
+    width: 750rpx;
+    background: url(https://mdmj.devdexterity.com/img/bg.png) #fff no-repeat center center;
+    background-size: 100% 100%;
+}
 .pic_top {
     width: 583rpx;
     padding-top: 80rpx;
@@ -28,12 +34,30 @@
     color: #333;
     padding-bottom: 30rpx;
 }
-.rule_title::before{
+.rule_title text{
+    position: relative
+}
+.rule_title text::before{
     content: '';
     position: absolute;
     width: 30rpx;
     height: 10rpx;
-    
+    background: url(https://mdmj.devdexterity.com/img/rule_title.png) no-repeat;
+    background-size: 100% 100%;
+    left: -40rpx;
+    top: 50%;
+    margin-top: -5rpx;
+}
+.rule_title text::after{
+    content: '';
+    position: absolute;
+    width: 30rpx;
+    height: 10rpx;
+    background: url(https://mdmj.devdexterity.com/img/rule_title.png) no-repeat;
+    background-size: 100% 100%;
+    right: -40rpx;
+    top: 50%;
+    margin-top: -5rpx;
 }
 
 .rule_content {

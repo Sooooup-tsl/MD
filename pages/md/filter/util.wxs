@@ -1,7 +1,6 @@
 var getTime = function(time) {
     var str = '';
-
-    var leftTime = getDate() - time;
+    var leftTime = Date.now() - time;
     var days = parseInt(leftTime / 1000 / 60 / 60 / 24, 10); 
     var hours = parseInt(leftTime / 1000 / 60 / 60 % 24, 10);
     var minutes = parseInt(leftTime / 1000 / 60 % 60, 10);

@@ -3,6 +3,7 @@
     "pages/md/index/index",
     "pages/md/history/history",
     "pages/md/introduce/introduce",
+    "pages/md/detail/detail",
     "pages/md/share/share",
     "pages/index/index",
     "pages/logs/logs"

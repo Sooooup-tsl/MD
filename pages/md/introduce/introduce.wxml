@@ -1,5 +1,5 @@
 <!--pages/md/introduce/introduce.wxml-->
-
+<!-- 
 <view class="main">
     <image src="{{introduce.bannerImg}}" class="pic_top" mode="widthFix"></image>
     <view class="text-center intro_name border_bottom05">
@@ -15,5 +15,7 @@
 </view>
 
 <import src="../template/footer.wxml"/>
-<template is="footer_page" data="{{imgurl}}"></template>
+<template is="footer_page" data="{{imgurl}}"></template> -->
+
+<web-view src="{{url}}"></web-view>
 

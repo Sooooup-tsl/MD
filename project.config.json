@@ -26,8 +26,15 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 0,
+			"list": [
+				{
+					"id": 0,
+					"name": "d",
+					"pathName": "pages/md/index/index",
+					"query": "brandId=1&shareOpenId=oBjAj0T6xtn66u7H02ynTtuRlKS0"
+				}
+			]
 		}
 	}
 }

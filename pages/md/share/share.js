@@ -13,6 +13,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        wx.showLoading({
+            title: '正在加载中'
+        })
+        
         var _this = this;
         var buyingId = options.buyingId;
         wx.request({
@@ -44,9 +48,6 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        wx.showLoading({
-            title: '正在加载中'
-        })
     },
 
     /**
