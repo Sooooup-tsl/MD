@@ -62,6 +62,20 @@ Page({
             isLoad = true;
         }
     },
+    // 预览瀑布流图片
+    previewImg1(e) {
+        wx.previewImage({
+            current: e.target.dataset.url, // 当前显示图片的http链接
+            urls: e.target.dataset.imgs // 需要预览的图片http链接列表
+        })
+    },
+    // 预览单图图片
+    previewImg2(e) {
+        wx.previewImage({
+            current: e.target.dataset.url, // 当前显示图片的http链接
+            urls: e.target.dataset.imgs // 需要预览的图片http链接列表
+        })
+    },
     // 预览案例图片
     previewImg(e) {
         wx.previewImage({
@@ -140,9 +154,25 @@ Page({
                 'content-type': 'application/json' // 默认值
             },
             success: function (res) {
+                console.log(res)
+                // 产品的图片
+                var newArr1 = [];
+                var productArr = res.data.data.tabList.productList.productArr;
+                productArr.forEach(function (item, index) {
+                    newArr1.push(item.pic)
+                })
+                // 门店的图片
+                var newArr2 = [];
+                var storeArr = res.data.data.tabList.storeList.storeArr;
+                storeArr.forEach(function (item, index) {
+                    newArr2.push(item.imgurl)
+                })
+
                 _this.setData({
                     detailList: res.data.data,
-                    hasActive: !common.isBlank(res.data.data.activeList)
+                    hasActive: !common.isBlank(res.data.data.activeList),
+                    'detailList.tabList.productList.imgArr': newArr1,
+                    'detailList.tabList.storeList.imgArr': newArr2
                 });
 
                 wx.getSystemInfo({
@@ -261,7 +291,7 @@ Page({
             that.setData({
                 'detailList.activeList.active_forward_num': that.data.detailList.active_forward_num,
                 'detailList.activeList.active_status': that.data.detailList.active_status
-                // 'detailList.activeList.active_status': 201 // 201未注册未参团 200 已注册未参团 100 已参团未分享 101 已参团已转发
+                // 'detailList.activeList.active_status': 101 // 201未注册未参团 200 已注册未参团 100 已参团未分享 101 已参团已转发
             })
         }
     },
@@ -429,6 +459,19 @@ Page({
                 }
             }
         })
+    },
+    // 一键回到顶部
+    goTop: function (e) {  
+        if (wx.pageScrollTo) {
+            wx.pageScrollTo({
+                scrollTop: 0
+            })
+        } else {
+            wx.showModal({
+                title: '提示',
+                content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+            })
+        }
     },
     /**
      * 生命周期函数--监听页面初次渲染完成

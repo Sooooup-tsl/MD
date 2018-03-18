@@ -24,7 +24,7 @@
                 </view>
                 <view class="g_item_r">
                     <block wx:if="{{active_status == 100}}">
-                        <navigator url="/pages/md/share/share?buyingId={{teamId}}">
+                        <navigator url="/pages/md/share/share?buyingId={{teamId}}&openId={{ownOpenId}}&brandId={{brandId}}">
                             <button class="g_report" bindtap="">分享好友</button>
                         </navigator>
                         <view class="g_people">
