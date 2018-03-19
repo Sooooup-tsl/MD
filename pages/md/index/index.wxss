@@ -46,6 +46,8 @@
     border: 1px solid #000;
     box-sizing: border-box;
     border-radius: 10rpx;
+    line-height:13px;
+    text-align:center;
 }
 .ppjs {
     font-size: 20rpx;
@@ -306,6 +308,10 @@
 .myVideo{
     width: 100%;
     margin-top: 30rpx;
+}
+.tab_video_cover{
+    height: 100%;
+    width: 100%;
 }
 .img_col {
   width: 46%;

@@ -31,7 +31,8 @@ Page({
                 _this.setData({
                     shareList: res.data.data,
                     ownOpenId: options.openId,
-                    brandId: options.brandId
+                    brandId: options.brandId,
+                    title: options.title
                 });
 
                 wx.hideLoading();
@@ -87,7 +88,7 @@ Page({
         var _this = this;
 
         return {
-            title: '自定义转发标题',
+            title: _this.data.title,
             path: '/pages/md/index/index?brandId=' + _this.data.brandId + '&shareOpenId=' + _this.data.ownOpenId,
             success: function (res) {
                 wx.request({

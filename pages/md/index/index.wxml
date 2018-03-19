@@ -1,7 +1,7 @@
 <!--pages/md/index/index.wxml-->
 <view style="padding-bottom: 120rpx;">
     <!-- 轮播图 -->
-    <swiper indicator-dots indicator-active-color="#fe3a2e">
+    <swiper indicator-dots indicator-active-color="#fe3a2e" style="height: 360rpx;">
         <block wx:for="{{detailList.bannerUrls}}" wx:key="">
             <swiper-item>
                 <image src="{{item}}" class="slide-image" mode="widthFix" data-img="{{item}}" />
@@ -37,21 +37,23 @@
             </view>
         </block>
 
+        <block wx:if="{{detailList.addressLength  > 1}}">
         <view class="item3" bindtap='loadMore'>
-            <view wx:if="{{!showMore}}">查看其他{{detailList.addressLength - 1 || 0}}家门店
+            <view wx:if="{{!showMore}}">查看其他{{detailList.addressLength - 1}}家门店
                 <label class="seemore"></label>
             </view>
             <view wx:else>收起
                 <label class="fold"></label>
             </view>
         </view>
+        </block>
     </view>
 
     <!-- 团购优惠 -->
 
     <view wx:if="{{hasActive}}">
         <import src="../template/active.wxml" />
-        <template is="active_page" data="{{imgurl, ownOpenId, brandId, ...detailList.activeList}}"></template>
+        <template is="active_page" data="{{imgurl, ownOpenId, brandId,shareTitle, ...detailList.activeList}}"></template>
     </view>
 
     <view class="tab_list">

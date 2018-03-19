@@ -15,6 +15,7 @@ Page({
     data: {
         brandId: '',
         imgurl: '../img', // 本地url
+        shareTitle: '', // 分享标题
         ownOpenId: '', // 自己的openId
         shareOpenId: '', // 分享者的openId 链接上带参
         isShowInfo: '',
@@ -170,6 +171,7 @@ Page({
 
                 _this.setData({
                     detailList: res.data.data,
+                    shareTitle: res.data.data.title,
                     hasActive: !common.isBlank(res.data.data.activeList),
                     'detailList.tabList.productList.imgArr': newArr1,
                     'detailList.tabList.storeList.imgArr': newArr2
@@ -291,7 +293,7 @@ Page({
             that.setData({
                 'detailList.activeList.active_forward_num': that.data.detailList.active_forward_num,
                 'detailList.activeList.active_status': that.data.detailList.active_status
-                // 'detailList.activeList.active_status': 101 // 201未注册未参团 200 已注册未参团 100 已参团未分享 101 已参团已转发
+                // 'detailList.activeList.active_status': 100 // 201未注册未参团 200 已注册未参团 100 已参团未分享 101 已参团已转发
             })
         }
     },
@@ -477,9 +479,8 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-        // this.videoContext = wx.createVideoContext('myVideo')
+        // this.videoCtx = wx.createVideoContext('myVideo')
     },
-
     /**
      * 生命周期函数--监听页面显示
      */
@@ -521,7 +522,7 @@ Page({
         var _this = this;
 
         return {
-            title: '自定义转发标题',
+            title: _this.data.shareTitle,
             path: '/pages/md/index/index?brandId=' + this.data.brandId + '&shareOpenId=' + this.data.ownOpenId,
             success: function (res) {
                 wx.request({
