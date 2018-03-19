@@ -34,7 +34,7 @@
                     <block wx:elif="{{active_status == 101}}">
                         <button class="g_report mt" open-type="share">继续分享</button>
                         <view class="g_people">
-                            <text class="red_word">{{active_forward_num}}</text><text>/{{groupPeople}}人点击</text>
+                            <text class="red_word">{{active_forward_num}}</text><text>/{{forward_gift_get_num}}人点击</text>
                         </view>
                         <view class="g_people">
                             可领<text class="red_word">{{active_forward_num >= groupPeople ? '1' : '0'}}</text>份礼物

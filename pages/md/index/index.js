@@ -292,6 +292,7 @@ Page({
 
             that.setData({
                 'detailList.activeList.active_forward_num': that.data.detailList.active_forward_num,
+                'detailList.activeList.forward_gift_get_num': that.data.detailList.forward_gift_get_num,
                 'detailList.activeList.active_status': that.data.detailList.active_status
                 // 'detailList.activeList.active_status': 100 // 201未注册未参团 200 已注册未参团 100 已参团未分享 101 已参团已转发
             })
