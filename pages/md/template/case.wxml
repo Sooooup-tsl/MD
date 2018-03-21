@@ -2,7 +2,7 @@
 <wxs module="util" src="../filter/util.wxs"></wxs>
 
 <template name="case_page">
-    <block wx:for="{{caseArr}}" wx:key="">
+    <block wx:for="{{list}}" wx:key="">
         <view class="tab_content_item tab_case_item">
             <text class="title">{{item.title}}</text>
             <text class="desc">{{item.desc}}</text>

@@ -84,7 +84,7 @@
         </view>
     </view>
     </block>
-    <view class="kefu_box border_top05" wx:if="{{!isVideoTab}}">
+    <view class="kefu_box border_top05">
         <view class="kefu">
             <view class="icon_kefu">
                 <image src="{{imgurl}}/kefu.png" mode="widthFix"></image>

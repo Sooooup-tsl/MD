@@ -4,7 +4,7 @@ var common = require('../common.js');
 let col1H = 0;
 let col2H = 0;
 let sendTime = 0;
-let isLoad = false;
+let isLoadNum = 0;
 
 Page({
 
@@ -52,29 +52,20 @@ Page({
     // 切换Tab
     changeTab(e) {
         var index = e.currentTarget.dataset.index;
-        var isVideo = (index == 3 ? true : false);
+        var tabtype = e.currentTarget.dataset.tabtype;
 
         this.setData({
-            currentTab: e.currentTarget.dataset.index,
-            'detailList.activeList.isVideoTab': isVideo
+            currentTab: index
         });
-
-        if (e.currentTarget.dataset.index == 0) {
-            isLoad = true;
-        }
     },
-    // 预览瀑布流图片
-    previewImg1(e) {
-        wx.previewImage({
-            current: e.target.dataset.url, // 当前显示图片的http链接
-            urls: e.target.dataset.imgs // 需要预览的图片http链接列表
-        })
-    },
-    // 预览单图图片
+    // 预览瀑布流图片 预览单图图片
     previewImg2(e) {
+        var tabno = e.target.dataset.tabno;
+        var list = e.target.dataset.imgs;
+        var key = 'tabListImgArr_' + tabno;
         wx.previewImage({
             current: e.target.dataset.url, // 当前显示图片的http链接
-            urls: e.target.dataset.imgs // 需要预览的图片http链接列表
+            urls: list[key] // 需要预览的图片http链接列表
         })
     },
     // 预览案例图片
@@ -85,9 +76,11 @@ Page({
         })
     },
     onImageLoad: function (e) {
-        if (isLoad) {
+        if (isLoadNum == this.data.images.length) {
             return;
         }
+
+        isLoadNum ++;
         let imageId = e.currentTarget.id;
         let oImgW = e.detail.width;         //图片原始宽度
         let oImgH = e.detail.height;        //图片原始高度
@@ -105,7 +98,6 @@ Page({
                 break;
             }
         }
-
         imageObj.height = imgHeight;
 
         let col1 = this.data.col1;
@@ -124,11 +116,17 @@ Page({
             col1: col1,
             col2: col2
         };
-
+        
         this.setData(data);
     },
     loadImages: function () {
-        let images =  this.data.detailList.tabList.productList.productArr;
+        var list = this.data.tabList;
+        let images = '';
+        list.forEach(function(item, index) {
+            if(item.tabType == 1) {
+                images = item.list;
+            }
+        });
 
         let baseId = "img-" + (+new Date());
 
@@ -147,7 +145,7 @@ Page({
         wx.request({
             url: 'https://mdmj.devdexterity.com/api/store/init',
             data: {
-                'brandId': _this.data.brandId,
+                'brandId': _this.data.brandId || 1,
                 'from': _this.data.ownOpenId,
                 'to': _this.data.shareOpenId
             },
@@ -155,45 +153,66 @@ Page({
                 'content-type': 'application/json' // 默认值
             },
             success: function (res) {
-                console.log(res)
-                // 产品的图片
-                var newArr1 = [];
-                var productArr = res.data.data.tabList.productList.productArr;
-                productArr.forEach(function (item, index) {
-                    newArr1.push(item.pic)
-                })
-                // 门店的图片
-                var newArr2 = [];
-                var storeArr = res.data.data.tabList.storeList.storeArr;
-                storeArr.forEach(function (item, index) {
-                    newArr2.push(item.imgurl)
-                })
+                const code = res.data.code;
+                if (code == 200) {
+                    var detailList = res.data.data,
+                        tabList = detailList.tabList,
+                        shareTitle = detailList.title,
+                        activeList = detailList.activeList;
+                    
+                    var tabListImgList = {};
 
-                _this.setData({
-                    detailList: res.data.data,
-                    shareTitle: res.data.data.title,
-                    hasActive: !common.isBlank(res.data.data.activeList),
-                    'detailList.tabList.productList.imgArr': newArr1,
-                    'detailList.tabList.storeList.imgArr': newArr2
-                });
+                    tabList.forEach(function (item, index) {
+                        // 所有tab下面的 各子类tab图片合集数组 传给放大轮播用 固定名称+tab顺序
+                        var name = 'tabListImgArr_' + index;
 
-                wx.getSystemInfo({
-                    success: (res) => {
-                        let ww = res.windowWidth;
-                        let wh = res.windowHeight;
-                        let imgWidth = ww * 0.48;
+                        var tabListImgArr = [];
+                        if (item.tabType == 1) {
+                        // 产品-瀑布流
+                            item.list.forEach(function (item, index) {
+                                tabListImgArr.push(item.pic)
+                            });
+                        } else if (item.tabType == 2) {
+                        // 门店-单图
+                            item.list.forEach(function (item, index) {
+                                tabListImgArr.push(item.imgurl)
+                            });
+                        }
+                        tabListImgList[name] = tabListImgArr;
+                    })
 
-                        _this.setData({
-                            imgWidth: imgWidth
-                        });
+                    
 
-                        //加载首组图片
-                        _this.loadImages();
-                    }
-                });
+                    _this.setData({
+                        detailList,
+                        activeList,
+                        tabList,
+                        tabListImgList,
+                        shareTitle,
+                        hasActive: !common.isBlank(activeList),
+                    });
 
-                // 团购优惠倒计时
-                _this.countDown();
+                    
+                    wx.getSystemInfo({
+                        success: (res) => {
+                            let ww = res.windowWidth;
+                            let wh = res.windowHeight;
+                            let imgWidth = ww * 0.48;
+
+                            _this.setData({
+                                imgWidth: imgWidth
+                            });
+
+                            //加载首组图片
+                            _this.loadImages();
+                        }
+                    });
+
+                    // 团购优惠倒计时
+                    _this.countDown();
+                } else {
+                    errorThrow(res);
+                }
 
                 wx.hideLoading(); 
             }
@@ -235,11 +254,15 @@ Page({
                                 },
                                 method: 'POST',
                                 success: function (res) {
-                                    _this.setData({
-                                        'ownOpenId': res.data.data.open_id
-                                    });
+                                    if (res.data.code == 200) {
+                                        _this.setData({
+                                            'ownOpenId': res.data.data.open_id
+                                        });
 
-                                    _this.getInitData();                                   
+                                        _this.getInitData();
+                                    } else {
+                                        errorThrow(res);
+                                    }                                  
                                 }
                             })
                         } else {
@@ -318,10 +341,7 @@ Page({
                 'content-type': 'application/json' // 默认值
             },
             success: function (res) {
-                wx.showToast({
-                    title: res.data.message,
-                    icon: 'none'
-                });
+                errorThrow(res);
 
                 _this.getInitData();
             }
@@ -376,6 +396,8 @@ Page({
                         });
 
                         sendTime = Date.now();
+                    } else {
+                        errorThrow(res);
                     }
                 }
             })
@@ -454,11 +476,7 @@ Page({
 
                     _this.getInitData();
                 } else {
-                    wx.showToast({
-                        title: res.data.message[0],
-                        icon: 'loading',
-                        duration: 2000
-                    })
+                    errorThrow(res);
                 }
             }
         })
@@ -536,9 +554,15 @@ Page({
                         'content-type': 'application/json' // 默认值
                     },
                     success: function (res) {
-                        wx.showToast({
-                            title: '转发成功',
-                        })
+                        console.log(res)
+                        if(res.data.code == 200) {
+                            wx.showToast({
+                                title: '转发成功',
+                            })
+                        } else {
+                            errorThrow(res);
+                        }
+                        
                     }
                 })
             },
@@ -549,3 +573,10 @@ Page({
     }
 })
 
+// 错误异常提醒
+function errorThrow(res) {
+    wx.showToast({
+        title: res.data.message,
+        icon: 'none'
+    })
+}

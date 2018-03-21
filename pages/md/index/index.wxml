@@ -59,33 +59,35 @@
     <view class="tab_list">
         <!-- tab -->
         <view class="tab_title flex_box flex_align_center border_bottom05">
-            <block wx:for="{{detailList.tabList.tabNameArr}}" wx:key="">
-                <view class="{{currentTab == index ? 'checked' : ''}} tab_item flex_1" data-index="{{index}}" bindtap="changeTab">
-                    <text>{{item}}</text>
+            <block wx:for="{{tabList}}" wx:key="">
+                <view class="{{currentTab == index ? 'checked' : ''}} tab_item flex_1" data-index="{{index}}" data-tabtype="{{item.tabType}}" bindtap="changeTab">
+                    <text>{{item.tabName}}</text>
                 </view>
             </block>
         </view>
+        <block wx:for="{{tabList}}" wx:key="">
         <!-- 产品 -->
-        <view class="tab_content_list" style="background: #f4f4f4" wx:if="{{currentTab == 0}}">
+        <view class="tab_content_list" style="background: #f4f4f4" wx:if="{{item.tabType == 1 && currentTab == index}}">
              <import src="../template/product.wxml" />
-            <template is="product_page" data="{{images,col1,col2, ...detailList.tabList.productList}}"></template> 
+            <template is="product_page" data="{{images,col1,col2, ...item, tabListImgList, tabno:index}}"></template> 
             
         </view>
         <!-- 门店 -->
-        <view class="tab_content_list" wx:elif="{{currentTab == 1}}">
+        <view class="tab_content_list" wx:elif="{{item.tabType == 2 && currentTab == index}}">
             <import src="../template/store.wxml" />
-            <template is="store_page" data="{{...detailList.tabList.storeList}}"></template>
+            <template is="store_page" data="{{...item, tabListImgList, tabno:index}}"></template>
         </view>
         <!-- 案例 -->
-        <view class="tab_content_list" wx:elif="{{currentTab == 2}}">
+        <view class="tab_content_list" wx:elif="{{item.tabType == 3 && currentTab == index}}">
             <import src="../template/case.wxml" />
-            <template is="case_page" data="{{...detailList.tabList.caseList}}"></template>
+            <template is="case_page" data="{{...item}}"></template>
         </view>
         <!-- 视频 -->
-        <view class="tab_content_list" wx:elif="{{currentTab == 3}}">
+        <view class="tab_content_list" wx:elif="{{item.tabType == 4 && currentTab == index}}">
             <import src="../template/video.wxml" />
-            <template is="video_page" data="{{...detailList.tabList.videoList}}"></template>
+            <template is="video_page" data="{{...item}}"></template>
         </view>
+        </block>
     </view>
 
     <import src="../template/footer.wxml" />
