@@ -4,7 +4,7 @@
     <swiper indicator-dots indicator-active-color="#fe3a2e" style="height: 360rpx;">
         <block wx:for="{{detailList.bannerUrls}}" wx:key="">
             <swiper-item>
-                <image src="{{item}}" class="slide-image" mode="widthFix" data-img="{{item}}" />
+                <image src="{{item}}" class="slide-image" mode="aspectFill" data-img="{{item}}" />
             </swiper-item>
         </block>
     </swiper>
@@ -12,7 +12,7 @@
     <view>
         <view class="item flex_box border_bottom05">
             <view class="item_l">
-                <image src="{{detailList.logoUrl}}" mode="widthFix"></image>
+                <image src="{{detailList.logoUrl}}" mode="aspectFill"></image>
             </view>
             <view class="item_c">
                 <text class="title">{{detailList.title}}</text>

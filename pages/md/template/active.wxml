@@ -16,7 +16,7 @@
         <view class="g_item_content ">
             <view class="g_item flex_box border_bottom05">
                 <view class="g_item_l">
-                    <image src="{{logoUrl}}" mode="widthFix"></image>
+                    <image src="{{logoUrl}}" mode="aspectFill"></image>
                 </view>
                 <view class="g_item_c">
                     <text class="title">{{title}}</text>

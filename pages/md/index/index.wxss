@@ -15,6 +15,10 @@
     flex: 0 0 auto;
     margin-top: -70rpx;
 }
+.item_l image{
+    width: inherit;
+    height: inherit;
+}
 .item_c {
     display: -webkit-flex;
     display: flex;
@@ -191,6 +195,10 @@
     height: 160rpx;
     margin-right: 30rpx;
     flex: 0 0 auto;
+}
+.g_item_l image{
+    width: inherit;
+    height: inherit;
 }
 .g_item_c {
     display: -webkit-flex;
