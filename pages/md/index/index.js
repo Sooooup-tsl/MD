@@ -28,6 +28,7 @@ Page({
         images: [],
         col1: [],
         col2: [],
+        curr_id: ''   //当前打开的视频id
     },
     // 拨打电话
     callTel(e) {
@@ -498,7 +499,13 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-        // this.videoCtx = wx.createVideoContext('myVideo')
+        this.videoContext = wx.createVideoContext('myVideo')
+    },
+    videoPlay(e) {
+        this.setData({
+            curr_id: e.currentTarget.dataset.id,
+        })
+        this.videoContext.play()
     },
     /**
      * 生命周期函数--监听页面显示
@@ -554,15 +561,9 @@ Page({
                         'content-type': 'application/json' // 默认值
                     },
                     success: function (res) {
-                        console.log(res)
-                        if(res.data.code == 200) {
-                            wx.showToast({
-                                title: '转发成功',
-                            })
-                        } else {
-                            errorThrow(res);
-                        }
-                        
+                        wx.showToast({
+                            title: '转发成功',
+                        })
                     }
                 })
             },

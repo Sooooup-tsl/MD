@@ -85,7 +85,7 @@
         <!-- 视频 -->
         <view class="tab_content_list" wx:elif="{{item.tabType == 4 && currentTab == index}}">
             <import src="../template/video.wxml" />
-            <template is="video_page" data="{{...item}}"></template>
+            <template is="video_page" data="{{curr_id, ...item}}"></template>
         </view>
         </block>
     </view>

@@ -1,10 +1,16 @@
 <!-- 视频 -->
 <template name="video_page">
-    <block wx:for="{{list}}" wx:key="">
-        <view class="tab_content_item tab_video_item border_bottom05" >
-            <video class="myVideo" src="{{item.videourl}}" controls poster="{{item.imgurl}}" objectFit="fill">
+     <view wx:for="{{list}}" wx:key="unique">
+        <view class="tab_content_item tab_video_item border_bottom05" data-id="{{index+1}}" bindtap="videoPlay">
+            <video  wx:if="{{curr_id == index+1}}" class="myVideo" id="myVideo" src="{{item.videourl}}" controls poster="{{item.imgurl}}" objectFit="cover">
             </video>
+            <view wx:else >
+              <image mode="aspectFill" src="{{item.imgurl}}"></image>
+              <view class="model-btn">
+                      <view class="play-icon"></view>
+                </view>
+          </view>
             <text class="desc">{{item.desc}}</text>
         </view>
-    </block>
+    </view>
 </template>
