@@ -71,12 +71,12 @@
         </view>
     </view>
     <block  wx:if="{{is_show_info}}">
-    <view class="notice border_top05" wx:if="{{isFold}}">
+    <view class="notice border_top05" wx:if="{{!isFold}}">
         <text>活动须知</text>
         <view>{{know}}</view>   
     </view>
     <view class="item3 border_top05" bindtap='showActive'>
-        <view wx:if="{{!isFold}}">活动须知
+        <view wx:if="{{isFold}}">活动须知
             <label class="seemore"></label>
         </view>
         <view wx:else>
@@ -85,12 +85,12 @@
     </view>
     </block>
     <view class="kefu_box border_top05">
-        <view class="kefu">
+        <navigator class="kefu" url="/pages/md/kefu/kefu">
             <view class="icon_kefu">
                 <image src="{{imgurl}}/kefu.png" mode="widthFix"></image>
             </view>
             <text>联系客服</text>
-        </view>
+        </navigator> 
 
         <block wx:if="{{active_status == 100}}">
             <navigator style="display:inline-block;" url="/pages/md/share/share?buyingId={{teamId}}&openId={{ownOpenId}}&brandId={{brandId}}&title={{shareTitle}}">

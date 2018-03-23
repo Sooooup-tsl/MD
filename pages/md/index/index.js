@@ -154,6 +154,7 @@ Page({
                 'content-type': 'application/json' // 默认值
             },
             success: function (res) {
+                console.log(res)
                 const code = res.data.code;
                 if (code == 200) {
                     var detailList = res.data.data,
@@ -506,6 +507,11 @@ Page({
             curr_id: e.currentTarget.dataset.id,
         })
         this.videoContext.play()
+    },
+    videoEnd(e) {
+        this.setData({
+            curr_id: ''
+        })
     },
     /**
      * 生命周期函数--监听页面显示
