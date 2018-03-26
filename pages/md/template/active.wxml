@@ -85,12 +85,12 @@
     </view>
     </block>
     <view class="kefu_box border_top05">
-        <navigator class="kefu" url="/pages/md/kefu/kefu">
+        <button open-type="contact" class="kefu">
             <view class="icon_kefu">
                 <image src="{{imgurl}}/kefu.png" mode="widthFix"></image>
             </view>
             <text>联系客服</text>
-        </navigator> 
+        </button> 
 
         <block wx:if="{{active_status == 100}}">
             <navigator style="display:inline-block;" url="/pages/md/share/share?buyingId={{teamId}}&openId={{ownOpenId}}&brandId={{brandId}}&title={{shareTitle}}">

@@ -43,6 +43,7 @@
     position: relative;
     height:110rpx;
     color: #333;
+    line-height: 24rpx;
 }
 .icon_kefu {
     width: 51rpx;
