@@ -142,11 +142,14 @@ Page({
     // 请求页面数据
     getInitData() {
         var _this = this;
-
+        var brandId = _this.data.brandId;
+        if (brandId == 'undefined' || !brandId) {
+            brandId = 5;
+        }
         wx.request({
             url: 'https://mdmj.devdexterity.com/api/store/init',
             data: {
-                'brandId': _this.data.brandId || 1,
+                'brandId': brandId,
                 'from': _this.data.ownOpenId,
                 'to': _this.data.shareOpenId
             },
