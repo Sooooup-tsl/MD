@@ -85,6 +85,7 @@
     </view>
     </block>
     <view class="kefu_box border_top05">
+        
         <button open-type="contact" class="kefu">
             <view class="icon_kefu">
                 <image src="{{imgurl}}/kefu.png" mode="widthFix"></image>
@@ -98,7 +99,7 @@
             </navigator>
         </block>
         <block wx:elif="{{active_status == 101}}">
-            <view class="buy_btn" open-type="share">继续分享</view>                
+            <button class="buy_btn" open-type="share">继续分享</button>                
         </block>
         <block wx:elif="{{active_status == 200}}">
             <view class="buy_btn" bindtap="joinGroup">立即团购报名</view>

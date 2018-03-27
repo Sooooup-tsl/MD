@@ -44,6 +44,7 @@
     height:110rpx;
     color: #333;
     line-height: 24rpx;
+    border-radius: 0;
 }
 .icon_kefu {
     width: 51rpx;
@@ -58,4 +59,5 @@
     line-height: 110rpx;
     height: 110rpx;
     background: #fe3a2e;
+    border-radius: 0;
 }

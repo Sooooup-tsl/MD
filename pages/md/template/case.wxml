@@ -11,7 +11,7 @@
                     <image src="{{imgItem}}" mode="scaleToFill" class="img-s" data-url="{{imgItem}}" data-imgs="{{item.imgurls}}" bindtap='previewImg'></image>
                 </block>
             </view>
-            <text class="time">{{util.getTime(item.time)}}</text>
+            <!-- <text class="time">{{util.getTime(item.time)}}</text> -->
         </view>
     </block>
 </template>
