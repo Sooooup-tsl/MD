@@ -66,7 +66,11 @@ Page({
                 }
             }
         });
-        
+
+        // 设置标题
+        wx.setNavigationBarTitle({
+            title: '足迹'
+        });
     },
 
     /**

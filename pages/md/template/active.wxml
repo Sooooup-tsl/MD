@@ -9,7 +9,7 @@
                 <text>{{countDownMinute}}</text> 分
                 <text>{{countDownSecond}}</text> 秒
             </view>
-            <navigator class="g_seeDetail" url="/pages/md/detail/detail?buyingId={{teamId}}">
+            <navigator class="g_seeDetail" url="/pages/md/detail/detail?buyingId={{teamId}}&title={{shareTitle}}">
                 <text>查看活动详情</text>
             </navigator>
         </view>

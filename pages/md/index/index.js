@@ -212,6 +212,11 @@ Page({
                             _this.loadImages();
                         }
                     });
+                    
+                    // 设置商户标题
+                    wx.setNavigationBarTitle({
+                        title: detailList.title
+                    });
 
                     // 团购优惠倒计时
                     _this.countDown();

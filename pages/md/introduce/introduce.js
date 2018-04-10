@@ -29,7 +29,11 @@ Page({
     onLoad: function (options) {
         this.setData({
             url: "https://mdmj.devdexterity.com/api/page/intro?brandId=" + options.brandId
-        })
+        });
+        // 设置商户标题
+        wx.setNavigationBarTitle({
+            title: options.title
+        });
     },
 
     /**

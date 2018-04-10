@@ -37,7 +37,12 @@ Page({
 
                 wx.hideLoading();
             }
-        })
+        });
+
+        // 设置商户标题
+        wx.setNavigationBarTitle({
+            title: options.title
+        });
     },
 
     /**

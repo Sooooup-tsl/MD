@@ -18,7 +18,7 @@
                 <text class="title">{{detailList.title}}</text>
                 <text class="desc nowrap">{{detailList.desc}}</text>
             </view>
-            <navigator url="/pages/md/introduce/introduce?brandId={{detailList.brandId}}" class="item_r">
+            <navigator url="/pages/md/introduce/introduce?brandId={{detailList.brandId}}&title={{shareTitle}}" class="item_r">
                 <view class="ppjs">品牌介绍</view>
             </navigator>
         </view>
